@@ -27,10 +27,11 @@ int main()
 	FILE * fo;
 	u64 primo;
 	u64 compr;
-	u64 m1, m2, i, tmp;
+	u64 m1, m2, i, tmp, temp2;
 	representacion mu;
 	char buff[LINESZ];
 	char buff2[LINESZ];
+	double invprimo;
 
 
 	/* Open input and output files */
@@ -68,15 +69,22 @@ int main()
 		{
 			/* We start with the calculation*/
 			sscanf(buff,"%lld",&primo);
+			invprimo=1.0/primo;
 			printf("Doing the test to the prime:%lld\n", primo);
 			m1=0;
 			m2=1;
 			for(i=2;i<=primo-1;i++)
 			{
 				tmp = m2*i;
+				//m1 = (trunc(1.0*tmp*invprimo)+m1*i);
+			  //m1 = m1 - (trunc(1.0*m1*invprimo))*primo;
 				m1 = (tmp/primo+m1*i)%primo;
-				m2 = tmp % primo;
+				if(tmp>primo)
+					m2 = tmp - (trunc(invprimo*tmp))*primo;
+				else
+					m2 = tmp;
 				printf("%d\n",m2);
+				//m2 = tmp % primo;
 			}
 			/* We write in the output file */
 			/* the prime, the prime² and the module*/
