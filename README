@@ -24,31 +24,3 @@ Para ejecutar el programa:
 
 El programa lee el fichero numbers, comprobando si cada uno 
 de los números que contiene este fichero es de wilson.
-
-The important thing in this version:
-
-Suposse that we have two numbers a,b and a prime p. We need to
-calculate mod(a*b,p^2)
-
-We can do:
-
-a=a_1*p+a_2
-b=b_1*p+b_2
-
-thus
-
-a*b = (a_1*p*b_1*p) + a_1*p*b_2 + b_1*p*a_2 + a_2*b_2
-
-thus we can cancel the term (a_1*p*b_1*p) due that the final goal is to calculate mod(..,p)
-
-then
-
-m_temp = a_1*p*b_2 + b_1*p*a_2 + a_2*b_2
-
-thus the important term is:
-
-m_2 = (a_2*b_2)%p
-m_1 = ((a_2*b_2)/p + a_1*p*b_2 + b_1*p*a_2)%p
-
-Check the code to understand it better.
-
